@@ -34,11 +34,16 @@ public class BalancingTest {
 
 	public static Stream<Arguments> balancingTestSource() {
 		return Stream.of(
+				Arguments.of(Arrays.asList(2,1,67,59,20), Arrays.asList(20,59),Arrays.asList(1,2,67)),
+				Arguments.of(Arrays.asList(1,2,3,4,5,6), Arrays.asList(1, 2, 3, 5),Arrays.asList(4, 6)),
 				Arguments.of(Arrays.asList(1,1), Arrays.asList(1),Arrays.asList(1)),
 				Arguments.of(Arrays.asList(2,2), Arrays.asList(2),Arrays.asList(2)),
 				Arguments.of(Arrays.asList(1,234,40,50), Arrays.asList(1,40,50),Arrays.asList(234)),
 				Arguments.of(Arrays.asList(1,2,3,4,5,6,7,8,9,10), Arrays.asList(1, 2, 3, 4, 5, 6, 7),Arrays.asList(8,9,10)),
-				Arguments.of(Arrays.asList(1,40,50,234,235), Arrays.asList(1, 2, 3, 4, 5, 6, 7),Arrays.asList(8,9,10))
+				Arguments.of(Arrays.asList(1,40,50,234,235), Arrays.asList(50, 234),Arrays.asList(1,40,235)),
+				Arguments.of(Arrays.asList(1,40,50,234,235,4000,230), Arrays.asList(4000),Arrays.asList(1, 40, 50, 230, 234, 235)),
+				Arguments.of(Arrays.asList(1,40,50,234,235,230), Arrays.asList(1, 40, 50, 235),Arrays.asList(230, 234)),
+				Arguments.of(Arrays.asList(0,1,40,50,234,235,230), Arrays.asList(0, 1, 40, 50, 235),Arrays.asList(230, 234))
 		);
 	}
 
