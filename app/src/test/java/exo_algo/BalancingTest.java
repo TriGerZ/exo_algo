@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /*
 Exemple 7 : Équilibrage
@@ -36,7 +36,9 @@ public class BalancingTest {
 		return Stream.of(
 				Arguments.of(Arrays.asList(1,1), Arrays.asList(1),Arrays.asList(1)),
 				Arguments.of(Arrays.asList(2,2), Arrays.asList(2),Arrays.asList(2)),
-				Arguments.of(Arrays.asList(1,234,40,50), Arrays.asList(1,40,50),Arrays.asList(234))
+				Arguments.of(Arrays.asList(1,234,40,50), Arrays.asList(1,40,50),Arrays.asList(234)),
+				Arguments.of(Arrays.asList(1,2,3,4,5,6,7,8,9,10), Arrays.asList(1, 2, 3, 4, 5, 6, 7),Arrays.asList(8,9,10)),
+				Arguments.of(Arrays.asList(1,40,50,234,235), Arrays.asList(1, 2, 3, 4, 5, 6, 7),Arrays.asList(8,9,10))
 		);
 	}
 
@@ -62,7 +64,7 @@ public class BalancingTest {
 		var result = balancing.execute(integerList);
 
 		//Then
-		assertEquals(expectedArrayList, result);
+		assertThat(result).hasSameElementsAs(expectedArrayList);
 	}
 
 
